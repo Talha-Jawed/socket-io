@@ -10,14 +10,19 @@ io.on("connection", socket => {
     console.log(msg);
     socket.broadcast.emit("chat", msg);
 
-    // socket.on('chat', function (data) {
-    //   socket.broadcast.emit('chat', data);//Send Back chat to the connected Clients
-    //   console.log(data)
   });
 
+  // handle typing
   socket.on("typing", data => {
     console.log(data);
     socket.broadcast.emit("typing", data);
+  });
+
+
+  //Handle read message
+  socket.on("read", obj => {
+    console.log(obj , 'seen====>');
+    socket.broadcast.emit("read", obj);
   });
 
 });
