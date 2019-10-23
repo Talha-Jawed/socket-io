@@ -22,6 +22,11 @@ io.on("connection", socket => {
     socket.broadcast.emit("read", obj);
   });
 
+  //Handle delivered message
+  socket.on("delivered", obj => {
+    socket.broadcast.emit("delivered", obj);
+  });
+
 });
 
 server.listen(port, () => console.log("server running on port:" + port));
